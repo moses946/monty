@@ -19,6 +19,10 @@ int execute(char *content, stack_t **stack, unsigned int lno, FILE *file)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"sub", sub},
+		{"div", divide},
+		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 	char *opcode;
