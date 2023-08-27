@@ -8,7 +8,7 @@
   */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack *h;
+	stack_t *h;
 	int aux;
 
 	h = *stack;
@@ -17,7 +17,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (!h->next)
 	{
 		free_stack(h);
-		fclose(buf.file);
+		fclose(bus.file);
 		error_message("L%u: can't swap, stack too short", line_number);
 	}
 	aux = h->n;
