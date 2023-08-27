@@ -1,33 +1,30 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
   * push - Pushes an element to stack
   * @stack: Stack
-  * @n: Element to be pushed to stack
+  * @line_number: Current line number
   *
   * Description: The function pushes an integer to the stack in LIFO order
   */
-void push(stack_t **stack, unsigned int n)
+void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_elem;
+	int n, j = 0;
 
-	new_elem = malloc(sizeof(stack_t));
-	if (new_elem == NULL)
-		error_message("Error: malloc failed\n");
-	new_elem->n = n;
-	new_elem->prev = NULL;
-	if (*stack ==  NULL)
+	if (bus.arg)
 	{
-		new_elem->next = NULL;
-		*stack = new_elem;
+		if (bus.arg[0] == '-')
+			j++;
+		for (; bus.arg[j] != '\0'; j++)
+		{
+			if (bus.arg[j] < 48 || bus.arg[j] > 57)
+				error_message("L%u: usage: push integer\n", line_number);
+		}
+		n = atoi(bus.arg);
+		if (bus.lifi == 0)
+			addnode(stack, n);
 	}
 	else
-	{
-		new_elem->next = *stack;
-		(*stack)->prev = new_elem;
-		*stack = new_elem;
-	}
+		error_message("L%u: usage: push integer\n", line_number);
 }
 

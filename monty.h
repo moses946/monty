@@ -2,6 +2,10 @@
 #define MONTY_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdarg.h>
+#include <string.h>
 
 /**
   * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -33,6 +37,27 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+  * bus_s - global variables
+  * @file: File
+  * @content: line content
+  * @counter: line number
+  * @args: opcode argument
+  * @lifo: option btw stack and queue
+  *
+  * Description: contains global variables used across all files
+  */
+typedef struct bus_s
+{
+	FILE *file;
+	char *content;
+	char *arg;
+	int lifi;
+} bus_t;
+extern bus_t bus;
+
+int execute(char *content, stack_t **stack, unsigned int line_number);
+void addnode(stack_t **head, int n);
 void push(stack_t **stack, unsigned int n);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
