@@ -10,11 +10,11 @@
   */
 void add(stack_t **stack, unsigned int line_number)
 {
-	if (stack == NULL)
+	if (*stack == NULL)
 	{
 		fclose(bus.file);
 		free_stack(*stack);
-		error_message("L%ld: can't add, stack too short", line_number);
+		error_message("L%ld: can't add, stack too short\n", line_number);
 	}
 	while ((*stack)->prev != NULL)
 		*stack = (*stack)->prev;
@@ -22,7 +22,7 @@ void add(stack_t **stack, unsigned int line_number)
 	{
 		fclose(bus.file);
 		free_stack(*stack);
-		error_message("L%ld: can't add, stack too short", line_number);
+		error_message("L%ld: can't add, stack too short\n", line_number);
 	}
 	((*stack)->next)->n += (*stack)->n;
 	pop(stack, line_number);
