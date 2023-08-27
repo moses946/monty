@@ -32,7 +32,7 @@ int execute(char *content, stack_t **stack, unsigned int lno, FILE *file)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 		{
-			instructions[i].f(stack, line_number);
+			instructions[i].f(stack, lno);
 			return (0);
 		}
 		i++;
@@ -42,7 +42,7 @@ int execute(char *content, stack_t **stack, unsigned int lno, FILE *file)
 	{
 		fclose(file);
 		free_stack(*stack);
-		error_message("L%u: unknown instruction %s\n", line_number, opcode);
+		error_message("L%u: unknown instruction %s\n", lno, opcode);
 	}
 	return (1);
 }

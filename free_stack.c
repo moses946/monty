@@ -1,6 +1,4 @@
-#include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "monty.h"
 
 /**
   * free_stack - frees the stack
