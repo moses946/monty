@@ -16,7 +16,11 @@ void addnode(stack_t **head, int n)
 	aux = *head;
 	new_elem = malloc(sizeof(stack_t));
 	if (new_elem == NULL)
+	{
+		free_stack(*head);
+		fclose(bus.file);
 		error_message("Error: malloc failed\n");
+	}
 	new_elem->n = n;
 	new_elem->prev = NULL;
 	if (aux)

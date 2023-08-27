@@ -8,7 +8,7 @@
   * @file: Pointer to the monty file open
   *
   */
-int execute(char *content, stack_t **stack, unsigned int line_number)
+int execute(char *content, stack_t **stack, unsigned int line_number, FILE *file)
 {
 	instruction_t instructions[] = {
 		{"push", push},
@@ -36,7 +36,12 @@ int execute(char *content, stack_t **stack, unsigned int line_number)
 		}
 		i++;
 	}
+
 	if (opcode && instructions[i].opcode == NULL)
+	{
+		fclose(file);
+		free_stack(*stack);
 		error_message("L%u: unknown instruction %s\n", line_number, opcode);
+	}
 	return (1);
 }

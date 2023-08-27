@@ -22,12 +22,17 @@ int main(int argc, char **argv)
 	file_ptr = fopen(argv[1], "r");
 	bus.file = file_ptr;
 	if (!file_ptr)
+	{
+		free_stack(stack);
 		error_message("Error: Can't open file %s\n", argv[1]);
+	}
 	while (fgets(content, BUFSIZE, file_ptr))
 	{
 		line_number++;
 		bus.content = content;
-		execute(content, &stack, line_number);
+		execute(content, &stack, line_number, file_ptr);
 	}
+	fclose(file_ptr);
+	free_stack(stack);
 	return (0);
 }

@@ -18,13 +18,21 @@ void push(stack_t **stack, unsigned int line_number)
 		for (; bus.arg[j] != '\0'; j++)
 		{
 			if (bus.arg[j] < 48 || bus.arg[j] > 57)
+			{
+				free_stack(*stack);
+				fclose(bus.file);
 				error_message("L%u: usage: push integer\n", line_number);
+			}
 		}
 		n = atoi(bus.arg);
 		if (bus.lifi == 0)
 			addnode(stack, n);
 	}
 	else
+	{
+		fclose(bus.file);
+		free_stack(*stack);
 		error_message("L%u: usage: push integer\n", line_number);
+	}
 }
 
