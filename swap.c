@@ -12,6 +12,11 @@ void swap(stack_t **stack, unsigned int line_number)
 	int aux;
 
 	h = *stack;
+	if (!h)
+	{
+		fclose(bus.file);
+		error_message("L%u: can't swap, stack too short", line_number);
+	}
 	while(h->prev)
 		h = h->prev;
 	if (!h->next)
