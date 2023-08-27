@@ -16,7 +16,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	{
 		fclose(bus.file);
 		free_stack(*stack);
-		error_message("L%ld: can't pop an empty stack", line_number);
+		error_message("L%ld: can't pop an empty stack\n", line_number);
 	}
 	pop_elem = *stack;
 	*stack = (*stack)->next;

@@ -4,11 +4,12 @@
   * execute - Executes the opcode command
   * @content: Line content
   * @stack: stack
-  * @line_number: current line number
+  * @lno: current line number
   * @file: Pointer to the monty file open
   *
+  * Return: 0 on success and 1 on faliure
   */
-int execute(char *content, stack_t **stack, unsigned int line_number, FILE *file)
+int execute(char *content, stack_t **stack, unsigned int lno, FILE *file)
 {
 	instruction_t instructions[] = {
 		{"push", push},

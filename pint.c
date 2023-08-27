@@ -1,6 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
   * pint - Prints the value at the top of the stack
@@ -10,7 +8,7 @@
   */
 void pint(stack_t **stack, unsigned int line_number)
 {
-	if (stack == NULL)
+	if (*stack == NULL)
 	{
 		fclose(bus.file);
 		free_stack(*stack);

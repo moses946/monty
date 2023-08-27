@@ -38,12 +38,11 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
-  * bus_s - global variables
+  * struct bus_s - global variables
   * @file: File
   * @content: line content
-  * @counter: line number
-  * @args: opcode argument
-  * @lifo: option btw stack and queue
+  * @arg: opcode argument
+  * @lifi: option btw stack and queue
   *
   * Description: contains global variables used across all files
   */
@@ -56,7 +55,7 @@ typedef struct bus_s
 } bus_t;
 extern bus_t bus;
 
-int execute(char *content, stack_t **stack, unsigned int line_number, FILE *file);
+int execute(char *content, stack_t **stack, unsigned int lno, FILE *file);
 void free_stack(stack_t *stack);
 void addnode(stack_t **head, int n);
 void push(stack_t **stack, unsigned int n);

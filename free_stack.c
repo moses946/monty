@@ -1,8 +1,10 @@
-#include "monty.h"
+#include "lists.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
-  * free_stack - Frees the stack
-  * @head: Pointer to the head of a stack
+  * free_stack - frees the stack
+  * @head: Pointer to the head of the stack
   *
   */
 void free_stack(stack_t *head)
