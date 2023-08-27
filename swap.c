@@ -1,6 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
   * swap - Swaps the two top elements of the stack
@@ -10,27 +8,19 @@
   */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
+	stack *h;
+	int aux;
 
-	if (stack == NULL)
+	h = *stack;
+	while(h->prev)
+		h = h->prev;
+	if (!h->next)
 	{
-		fclose(bus.file);
-		free_stack(*stack);
-		error_message("L%ld: can't swap, stack too short", line_number);
+		free_stack(h);
+		fclose(buf.file);
+		error_message("L%u: can't swap, stack too short", line_number);
 	}
-	while ((*stack)->prev != NULL)
-		*stack = (*stack)->prev;
-	if ((*stack)->next == NULL)
-	{
-		free_stack(*stack);
-		fclose(bus.file);
-		error_message("L%ld: can't swap, stack too short", line_number);
-	}
-	temp = *stack;
-	*stack  = (*stack)->next;
-	temp->next = (*stack)->next;
-	temp->prev = *stack;
-	((*stack)->next)->prev = temp;
-	(*stack)->next = temp;
-	(*stack)->prev = NULL;
+	aux = h->n;
+	h->n = (h->next)->n;
+	(h->next)->n = aux;
 }
