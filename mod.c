@@ -30,6 +30,6 @@ void mod(stack_t **stack, unsigned int line_number)
 		free_stack(*stack);
 		error_message("L%u: division by zero\n", line_number);
 	}
-	((*stack)->next)->n = (*stack)->n % ((*stack)->next)->n;
+	((*stack)->next)->n = ((*stack)->next)->n % (*stack)->n;
 	pop(stack, line_number);
 }
